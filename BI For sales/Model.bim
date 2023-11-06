@@ -1,0 +1,808 @@
+{
+  "name": "SemanticModel",
+  "compatibilityLevel": 1200,
+  "model": {
+    "culture": "en-US",
+    "dataSources": [
+      {
+        "name": "SqlServer DESKTOP-TFAFJ6F CompanyX",
+        "connectionString": "Provider=SQLOLEDB;Data Source=DESKTOP-TFAFJ6F;Integrated Security=SSPI;Persist Security Info=false;Initial Catalog=CompanyX",
+        "impersonationMode": "impersonateAccount",
+        "account": "hoangnhutsp@gmail.com",
+        "annotations": [
+          {
+            "name": "ConnectionEditUISource",
+            "value": "SqlServer"
+          }
+        ]
+      }
+    ],
+    "tables": [
+      {
+        "name": "Products Dimension",
+        "columns": [
+          {
+            "name": "ProductID",
+            "dataType": "int64",
+            "sourceColumn": "ProductID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "Name",
+            "dataType": "string",
+            "sourceColumn": "Name",
+            "sourceProviderType": "VarChar"
+          },
+          {
+            "name": "ProductNumber",
+            "dataType": "string",
+            "sourceColumn": "ProductNumber",
+            "sourceProviderType": "VarChar"
+          },
+          {
+            "name": "Color",
+            "dataType": "string",
+            "sourceColumn": "Color",
+            "sourceProviderType": "VarChar"
+          },
+          {
+            "name": "Size",
+            "dataType": "string",
+            "sourceColumn": "Size",
+            "sourceProviderType": "VarChar"
+          },
+          {
+            "name": "Class",
+            "dataType": "string",
+            "sourceColumn": "Class",
+            "sourceProviderType": "VarChar"
+          },
+          {
+            "name": "Style",
+            "dataType": "string",
+            "sourceColumn": "Style",
+            "sourceProviderType": "VarChar"
+          },
+          {
+            "name": "Product Subcategory Name",
+            "dataType": "string",
+            "sourceColumn": "Product Subcategory Name",
+            "sourceProviderType": "VarChar"
+          },
+          {
+            "name": "Product Category Name",
+            "dataType": "string",
+            "sourceColumn": "Product Category Name",
+            "sourceProviderType": "VarChar"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "DIM_Products",
+            "dataView": "full",
+            "source": {
+              "type": "query",
+              "query": [
+                "SELECT",
+                "    [ProductID],",
+                "    [Product].[Name],",
+                "    [Product].[ProductNumber],",
+                "    [Product].[Color],",
+                "    [Product].[Size],",
+                "    [Product].[Class],",
+                "    [Product].[Style],",
+                "    ISNULL([ProductSubcategory].[Name], 'Others') as 'Product Subcategory Name',",
+                "    ISNULL([ProductCategory].[Name], 'Others') as 'Product Category Name'",
+                "FROM [CompanyX].[Production].[Product]",
+                "LEFT JOIN [CompanyX].[Production].[ProductSubcategory]",
+                "    ON [ProductSubcategory].[ProductSubcategoryID] = [Product].[ProductSubcategoryID]",
+                "LEFT JOIN [CompanyX].[Production].[ProductCategory]",
+                "    ON [ProductCategory].[ProductCategoryID] = [ProductSubcategory].[ProductCategoryID];"
+              ],
+              "dataSource": "SqlServer DESKTOP-TFAFJ6F CompanyX"
+            },
+            "annotations": [
+              {
+                "name": "QueryEditorSerialization",
+                "value": [
+                  "<?xml version=\"1.0\" encoding=\"UTF-16\"?><Gemini xmlns=\"QueryEditorSerialization\"><AnnotationContent><![CDATA[<RSQueryCommandText>SELECT",
+                  "    [ProductID],",
+                  "    [Product].[Name],",
+                  "    [Product].[ProductNumber],",
+                  "    [Product].[Color],",
+                  "    [Product].[Size],",
+                  "    [Product].[Class],",
+                  "    [Product].[Style],",
+                  "    ISNULL([ProductSubcategory].[Name], 'Others') as 'Product Subcategory Name',",
+                  "    ISNULL([ProductCategory].[Name], 'Others') as 'Product Category Name'",
+                  "FROM [CompanyX].[Production].[Product]",
+                  "LEFT JOIN [CompanyX].[Production].[ProductSubcategory]",
+                  "    ON [ProductSubcategory].[ProductSubcategoryID] = [Product].[ProductSubcategoryID]",
+                  "LEFT JOIN [CompanyX].[Production].[ProductCategory]",
+                  "    ON [ProductCategory].[ProductCategoryID] = [ProductSubcategory].[ProductCategoryID];</RSQueryCommandText><RSQueryCommandType>Text</RSQueryCommandType><RSQueryDesignState></RSQueryDesignState>]]></AnnotationContent></Gemini>"
+                ]
+              }
+            ]
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": [
+              "SELECT",
+              "    [ProductID],",
+              "    [Product].[Name],",
+              "    [Product].[ProductNumber],",
+              "    [Product].[Color],",
+              "    [Product].[Size],",
+              "    [Product].[Class],",
+              "    [Product].[Style],",
+              "    ISNULL([ProductSubcategory].[Name], 'Others') as 'Product Subcategory Name',",
+              "    ISNULL([ProductCategory].[Name], 'Others') as 'Product Category Name'",
+              "FROM [CompanyX].[Production].[Product]",
+              "LEFT JOIN [CompanyX].[Production].[ProductSubcategory]",
+              "    ON [ProductSubcategory].[ProductSubcategoryID] = [Product].[ProductSubcategoryID]",
+              "LEFT JOIN [CompanyX].[Production].[ProductCategory]",
+              "    ON [ProductCategory].[ProductCategoryID] = [ProductSubcategory].[ProductCategoryID];"
+            ]
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "DIM_Products"
+          },
+          {
+            "name": "QueryEditorSerialization",
+            "value": [
+              "<?xml version=\"1.0\" encoding=\"UTF-16\"?><Gemini xmlns=\"QueryEditorSerialization\"><AnnotationContent><![CDATA[<RSQueryCommandText>SELECT",
+              "    [ProductID],",
+              "    [Product].[Name],",
+              "    [Product].[ProductNumber],",
+              "    [Product].[Color],",
+              "    [Product].[Size],",
+              "    [Product].[Class],",
+              "    [Product].[Style],",
+              "    ISNULL([ProductSubcategory].[Name], 'Others') as 'Product Subcategory Name',",
+              "    ISNULL([ProductCategory].[Name], 'Others') as 'Product Category Name'",
+              "FROM [CompanyX].[Production].[Product]",
+              "LEFT JOIN [CompanyX].[Production].[ProductSubcategory]",
+              "    ON [ProductSubcategory].[ProductSubcategoryID] = [Product].[ProductSubcategoryID]",
+              "LEFT JOIN [CompanyX].[Production].[ProductCategory]",
+              "    ON [ProductCategory].[ProductCategoryID] = [ProductSubcategory].[ProductCategoryID];</RSQueryCommandText><RSQueryCommandType>Text</RSQueryCommandType><RSQueryDesignState></RSQueryDesignState>]]></AnnotationContent></Gemini>"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Calendar Dimension",
+        "columns": [
+          {
+            "name": "DateID",
+            "dataType": "dateTime",
+            "sourceColumn": "DateID",
+            "formatString": "General Date",
+            "sourceProviderType": "Date"
+          },
+          {
+            "name": "Day",
+            "dataType": "int64",
+            "sourceColumn": "Day",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "Month",
+            "dataType": "int64",
+            "sourceColumn": "Month",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "Year",
+            "dataType": "int64",
+            "sourceColumn": "Year",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "MonthSortName",
+            "dataType": "string",
+            "sourceColumn": "MonthSortName",
+            "sourceProviderType": "VarChar"
+          },
+          {
+            "name": "MonthNo",
+            "dataType": "int64",
+            "sourceColumn": "MonthNo",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "Quarter",
+            "dataType": "int64",
+            "sourceColumn": "Quarter",
+            "sourceProviderType": "Integer"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "DIM_Calendar",
+            "dataView": "full",
+            "source": {
+              "type": "query",
+              "query": [
+                "SELECT DISTINCT",
+                "    [OrderDate] AS [DateID],",
+                "    DAY([OrderDate]) AS [Day],",
+                "    MONTH([OrderDate]) AS [Month],",
+                "    YEAR([OrderDate]) AS [Year],",
+                "    FORMAT([OrderDate], 'MMMM') AS [MonthSortName],",
+                "    MONTH([OrderDate]) AS [MonthNo],",
+                "    (MONTH([OrderDate]) - 1) / 3 + 1 AS [Quarter]",
+                "FROM [CompanyX].[Sales].[SalesOrderHeader];"
+              ],
+              "dataSource": "SqlServer DESKTOP-TFAFJ6F CompanyX"
+            },
+            "annotations": [
+              {
+                "name": "QueryEditorSerialization",
+                "value": [
+                  "<?xml version=\"1.0\" encoding=\"UTF-16\"?><Gemini xmlns=\"QueryEditorSerialization\"><AnnotationContent><![CDATA[<RSQueryCommandText>SELECT DISTINCT",
+                  "    [OrderDate] AS [DateID],",
+                  "    DAY([OrderDate]) AS [Day],",
+                  "    MONTH([OrderDate]) AS [Month],",
+                  "    YEAR([OrderDate]) AS [Year],",
+                  "    FORMAT([OrderDate], 'MMMM') AS [MonthSortName],",
+                  "    MONTH([OrderDate]) AS [MonthNo],",
+                  "    (MONTH([OrderDate]) - 1) / 3 + 1 AS [Quarter]",
+                  "FROM [CompanyX].[Sales].[SalesOrderHeader];</RSQueryCommandText><RSQueryCommandType>Text</RSQueryCommandType><RSQueryDesignState></RSQueryDesignState>]]></AnnotationContent></Gemini>"
+                ]
+              }
+            ]
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": [
+              "SELECT DISTINCT",
+              "    [OrderDate] AS [DateID],",
+              "    DAY([OrderDate]) AS [Day],",
+              "    MONTH([OrderDate]) AS [Month],",
+              "    YEAR([OrderDate]) AS [Year],",
+              "    FORMAT([OrderDate], 'MMMM') AS [MonthSortName],",
+              "    MONTH([OrderDate]) AS [MonthNo],",
+              "    (MONTH([OrderDate]) - 1) / 3 + 1 AS [Quarter]",
+              "FROM [CompanyX].[Sales].[SalesOrderHeader];"
+            ]
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "DIM_Calendar"
+          },
+          {
+            "name": "QueryEditorSerialization",
+            "value": [
+              "<?xml version=\"1.0\" encoding=\"UTF-16\"?><Gemini xmlns=\"QueryEditorSerialization\"><AnnotationContent><![CDATA[<RSQueryCommandText>SELECT DISTINCT",
+              "    [OrderDate] AS [DateID],",
+              "    DAY([OrderDate]) AS [Day],",
+              "    MONTH([OrderDate]) AS [Month],",
+              "    YEAR([OrderDate]) AS [Year],",
+              "    FORMAT([OrderDate], 'MMMM') AS [MonthSortName],",
+              "    MONTH([OrderDate]) AS [MonthNo],",
+              "    (MONTH([OrderDate]) - 1) / 3 + 1 AS [Quarter]",
+              "FROM [CompanyX].[Sales].[SalesOrderHeader];</RSQueryCommandText><RSQueryCommandType>Text</RSQueryCommandType><RSQueryDesignState></RSQueryDesignState>]]></AnnotationContent></Gemini>"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Customer Dimension",
+        "columns": [
+          {
+            "name": "CustomerID",
+            "dataType": "int64",
+            "sourceColumn": "CustomerID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "PersonID",
+            "dataType": "int64",
+            "sourceColumn": "PersonID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "ModifiedDate",
+            "dataType": "dateTime",
+            "sourceColumn": "ModifiedDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBTimeStamp"
+          },
+          {
+            "name": "StoreName",
+            "dataType": "string",
+            "sourceColumn": "StoreName",
+            "sourceProviderType": "WChar"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Customer Dimension",
+            "dataView": "full",
+            "source": {
+              "type": "query",
+              "query": " \t\t\t\tSELECT [dbo].[Customer (Dimension)].*   FROM [dbo].[Customer (Dimension)] ",
+              "dataSource": "SqlServer DESKTOP-TFAFJ6F CompanyX"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " \t\t\t\tSELECT [dbo].[Customer (Dimension)].*   FROM [dbo].[Customer (Dimension)] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "Customer (Dimension)"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          }
+        ]
+      },
+      {
+        "name": "SaleOrderDetail Dimension",
+        "columns": [
+          {
+            "name": "SalesOrderID",
+            "dataType": "int64",
+            "sourceColumn": "SalesOrderID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "SalesOrderDetailID",
+            "dataType": "int64",
+            "sourceColumn": "SalesOrderDetailID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "LineTotal",
+            "dataType": "double",
+            "sourceColumn": "LineTotal",
+            "sourceProviderType": "Numeric"
+          },
+          {
+            "name": "OrderQty",
+            "dataType": "int64",
+            "sourceColumn": "OrderQty",
+            "sourceProviderType": "SmallInt"
+          },
+          {
+            "name": "ProductSubcategoryID",
+            "dataType": "int64",
+            "sourceColumn": "ProductSubcategoryID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "Name",
+            "dataType": "string",
+            "sourceColumn": "Name",
+            "sourceProviderType": "WChar"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "SaleOrderDetail Dimension",
+            "dataView": "full",
+            "source": {
+              "type": "query",
+              "query": " \t\t\t\tSELECT [dbo].[SaleOrderDetail (Dimension)].*   FROM [dbo].[SaleOrderDetail (Dimension)] ",
+              "dataSource": "SqlServer DESKTOP-TFAFJ6F CompanyX"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " \t\t\t\tSELECT [dbo].[SaleOrderDetail (Dimension)].*   FROM [dbo].[SaleOrderDetail (Dimension)] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "SaleOrderDetail (Dimension)"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          }
+        ]
+      },
+      {
+        "name": "Sales  Promotions Fact",
+        "columns": [
+          {
+            "name": "SalesOrderID",
+            "dataType": "int64",
+            "sourceColumn": "SalesOrderID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "OrderDate",
+            "dataType": "dateTime",
+            "sourceColumn": "OrderDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBTimeStamp"
+          },
+          {
+            "name": "OnlineOrderFlag",
+            "dataType": "boolean",
+            "sourceColumn": "OnlineOrderFlag",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "CustomerID",
+            "dataType": "int64",
+            "sourceColumn": "CustomerID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "SalesPersonID",
+            "dataType": "int64",
+            "sourceColumn": "SalesPersonID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "CurrencyRateID",
+            "dataType": "int64",
+            "sourceColumn": "CurrencyRateID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "SubTotal",
+            "dataType": "decimal",
+            "sourceColumn": "SubTotal",
+            "formatString": "\\$#,0.00;(\\$#,0.00);\\$#,0.00",
+            "sourceProviderType": "Currency",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\" Accuracy=\"2\" ThousandSeparator=\"True\"><Currency LCID=\"1033\" DisplayName=\"$ English (United States)\" Symbol=\"$\" PositivePattern=\"0\" NegativePattern=\"0\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "TaxAmt",
+            "dataType": "decimal",
+            "sourceColumn": "TaxAmt",
+            "formatString": "\\$#,0.00;(\\$#,0.00);\\$#,0.00",
+            "sourceProviderType": "Currency",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\" Accuracy=\"2\" ThousandSeparator=\"True\"><Currency LCID=\"1033\" DisplayName=\"$ English (United States)\" Symbol=\"$\" PositivePattern=\"0\" NegativePattern=\"0\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "Freight",
+            "dataType": "decimal",
+            "sourceColumn": "Freight",
+            "formatString": "\\$#,0.00;(\\$#,0.00);\\$#,0.00",
+            "sourceProviderType": "Currency",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\" Accuracy=\"2\" ThousandSeparator=\"True\"><Currency LCID=\"1033\" DisplayName=\"$ English (United States)\" Symbol=\"$\" PositivePattern=\"0\" NegativePattern=\"0\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "TotalDue",
+            "dataType": "decimal",
+            "sourceColumn": "TotalDue",
+            "formatString": "\\$#,0.00;(\\$#,0.00);\\$#,0.00",
+            "sourceProviderType": "Currency",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\" Accuracy=\"2\" ThousandSeparator=\"True\"><Currency LCID=\"1033\" DisplayName=\"$ English (United States)\" Symbol=\"$\" PositivePattern=\"0\" NegativePattern=\"0\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "ModifiedDate",
+            "dataType": "dateTime",
+            "sourceColumn": "ModifiedDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBTimeStamp"
+          },
+          {
+            "name": "CardType",
+            "dataType": "string",
+            "sourceColumn": "CardType",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "CardNumber",
+            "dataType": "string",
+            "sourceColumn": "CardNumber",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "ShipDate",
+            "dataType": "dateTime",
+            "sourceColumn": "ShipDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBTimeStamp"
+          },
+          {
+            "name": "TotalShippingDay",
+            "dataType": "int64",
+            "sourceColumn": "TotalShippingDay",
+            "sourceProviderType": "Integer"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Sales  Promotions Fact",
+            "dataView": "full",
+            "source": {
+              "type": "query",
+              "query": " \t\t\t\tSELECT [dbo].[Sales & Promotions (Fact)].*   FROM [dbo].[Sales & Promotions (Fact)] ",
+              "dataSource": "SqlServer DESKTOP-TFAFJ6F CompanyX"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " \t\t\t\tSELECT [dbo].[Sales & Promotions (Fact)].*   FROM [dbo].[Sales & Promotions (Fact)] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "Sales & Promotions (Fact)"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          }
+        ]
+      },
+      {
+        "name": "Territory Dimension",
+        "columns": [
+          {
+            "name": "TerritoryID",
+            "dataType": "int64",
+            "sourceColumn": "TerritoryID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "CountryRegionName",
+            "dataType": "string",
+            "sourceColumn": "CountryRegionName",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "ContinentGroup",
+            "dataType": "string",
+            "sourceColumn": "ContinentGroup",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "ModifiedDate",
+            "dataType": "dateTime",
+            "sourceColumn": "ModifiedDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBTimeStamp"
+          },
+          {
+            "name": "CountryRegionCode",
+            "dataType": "string",
+            "sourceColumn": "CountryRegionCode",
+            "sourceProviderType": "WChar"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Territory Dimension",
+            "dataView": "full",
+            "source": {
+              "type": "query",
+              "query": " \t\t\t\tSELECT [dbo].[Territory (Dimension)].*   FROM [dbo].[Territory (Dimension)] ",
+              "dataSource": "SqlServer DESKTOP-TFAFJ6F CompanyX"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " \t\t\t\tSELECT [dbo].[Territory (Dimension)].*   FROM [dbo].[Territory (Dimension)] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "Territory (Dimension)"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          }
+        ]
+      },
+      {
+        "name": "SaleOrderDetail TMP Dimension",
+        "columns": [
+          {
+            "name": "SalesOrderID",
+            "dataType": "int64",
+            "sourceColumn": "SalesOrderID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "SalesOrderDetailID",
+            "dataType": "int64",
+            "sourceColumn": "SalesOrderDetailID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "CarrierTrackingNumber",
+            "dataType": "string",
+            "sourceColumn": "CarrierTrackingNumber",
+            "sourceProviderType": "VarChar"
+          },
+          {
+            "name": "OrderQty",
+            "dataType": "int64",
+            "sourceColumn": "OrderQty",
+            "sourceProviderType": "SmallInt"
+          },
+          {
+            "name": "ProductID",
+            "dataType": "int64",
+            "sourceColumn": "ProductID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "SpecialOfferID",
+            "dataType": "int64",
+            "sourceColumn": "SpecialOfferID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "UnitPrice",
+            "dataType": "double",
+            "sourceColumn": "UnitPrice",
+            "sourceProviderType": "Decimal"
+          },
+          {
+            "name": "UnitPriceDiscount",
+            "dataType": "double",
+            "sourceColumn": "UnitPriceDiscount",
+            "sourceProviderType": "Decimal"
+          },
+          {
+            "name": "LineTotal",
+            "dataType": "double",
+            "sourceColumn": "LineTotal",
+            "sourceProviderType": "Decimal"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "SaleOrderDetail TMP Dimension",
+            "dataView": "full",
+            "source": {
+              "type": "query",
+              "query": [
+                "SELECT [SalesOrderID]",
+                "      ,[SalesOrderDetailID]",
+                "      ,[CarrierTrackingNumber]",
+                "      ,[OrderQty]",
+                "      ,[ProductID]",
+                "      ,[SpecialOfferID]",
+                "      ,[UnitPrice]",
+                "      ,[UnitPriceDiscount]",
+                "      ,[LineTotal]",
+                "  FROM [CompanyX].[Sales].[SalesOrderDetail]"
+              ],
+              "dataSource": "SqlServer DESKTOP-TFAFJ6F CompanyX"
+            },
+            "annotations": [
+              {
+                "name": "QueryEditorSerialization",
+                "value": [
+                  "<?xml version=\"1.0\" encoding=\"UTF-16\"?><Gemini xmlns=\"QueryEditorSerialization\"><AnnotationContent><![CDATA[<RSQueryCommandText>SELECT [SalesOrderID]",
+                  "      ,[SalesOrderDetailID]",
+                  "      ,[CarrierTrackingNumber]",
+                  "      ,[OrderQty]",
+                  "      ,[ProductID]",
+                  "      ,[SpecialOfferID]",
+                  "      ,[UnitPrice]",
+                  "      ,[UnitPriceDiscount]",
+                  "      ,[LineTotal]",
+                  "  FROM [CompanyX].[Sales].[SalesOrderDetail]</RSQueryCommandText><RSQueryCommandType>Text</RSQueryCommandType><RSQueryDesignState></RSQueryDesignState>]]></AnnotationContent></Gemini>"
+                ]
+              }
+            ]
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": [
+              "SELECT [SalesOrderID]",
+              "      ,[SalesOrderDetailID]",
+              "      ,[CarrierTrackingNumber]",
+              "      ,[OrderQty]",
+              "      ,[ProductID]",
+              "      ,[SpecialOfferID]",
+              "      ,[UnitPrice]",
+              "      ,[UnitPriceDiscount]",
+              "      ,[LineTotal]",
+              "  FROM [CompanyX].[Sales].[SalesOrderDetail]"
+            ]
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "SaleOrderDetail TMP Dimension"
+          },
+          {
+            "name": "QueryEditorSerialization",
+            "value": [
+              "<?xml version=\"1.0\" encoding=\"UTF-16\"?><Gemini xmlns=\"QueryEditorSerialization\"><AnnotationContent><![CDATA[<RSQueryCommandText>SELECT [SalesOrderID]",
+              "      ,[SalesOrderDetailID]",
+              "      ,[CarrierTrackingNumber]",
+              "      ,[OrderQty]",
+              "      ,[ProductID]",
+              "      ,[SpecialOfferID]",
+              "      ,[UnitPrice]",
+              "      ,[UnitPriceDiscount]",
+              "      ,[LineTotal]",
+              "  FROM [CompanyX].[Sales].[SalesOrderDetail]</RSQueryCommandText><RSQueryCommandType>Text</RSQueryCommandType><RSQueryDesignState></RSQueryDesignState>]]></AnnotationContent></Gemini>"
+            ]
+          }
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "name": "6ac726e8-c5c0-43b3-98a0-e61a862f49a1",
+        "fromTable": "SaleOrderDetail Dimension",
+        "fromColumn": "SalesOrderID",
+        "toTable": "Sales  Promotions Fact",
+        "toColumn": "SalesOrderID"
+      },
+      {
+        "name": "d71c9ec4-e0c2-4402-b4f9-2cd420c1a3cd",
+        "fromTable": "Sales  Promotions Fact",
+        "fromColumn": "CustomerID",
+        "toTable": "Customer Dimension",
+        "toColumn": "CustomerID"
+      },
+      {
+        "name": "b1b52323-b7a5-48ac-81a8-ba142c04d8b7",
+        "fromTable": "Sales  Promotions Fact",
+        "fromColumn": "OrderDate",
+        "toTable": "Calendar Dimension",
+        "toColumn": "DateID"
+      },
+      {
+        "name": "536cf094-9c75-47fb-a2a2-008001ab17f3",
+        "fromTable": "SaleOrderDetail TMP Dimension",
+        "fromColumn": "SalesOrderID",
+        "toTable": "Sales  Promotions Fact",
+        "toColumn": "SalesOrderID"
+      },
+      {
+        "name": "ba1f66fb-fab3-4cab-8f8a-1a577df2cc45",
+        "fromTable": "SaleOrderDetail TMP Dimension",
+        "fromColumn": "ProductID",
+        "toTable": "Products Dimension",
+        "toColumn": "ProductID"
+      }
+    ],
+    "annotations": [
+      {
+        "name": "ClientCompatibilityLevel",
+        "value": "400"
+      }
+    ]
+  },
+  "id": "SemanticModel"
+}
